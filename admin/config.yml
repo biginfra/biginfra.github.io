@@ -1,28 +1,12 @@
-
-media_folder: "assets/uploads"
-public_folder: "/assets/uploads"
+backend:
+  name: test-repo
 
 collections:
-  - name: "pages"
-    label: "Pages"
+  - name: "test"
+    label: "Test"
     files:
       - file: "index.md"
         label: "Home"
         name: "home"
         fields:
-          - { label: "Title", name: "title", widget: "string" }
           - { label: "Body", name: "body", widget: "markdown" }
-
-      - file: "valuation.md"
-        label: "Valuation"
-        name: "valuation"
-        fields:
-          - { label: "Title", name: "title", widget: "string" }
-          - { label: "Body", name: "body", widget: "markdown" }
-
-
-backend:
-  name: github
-  repo: biginfra/biginfra.github.io
-  branch: main
-  client_id: Ov23likMP3o7CDbwgFv0
