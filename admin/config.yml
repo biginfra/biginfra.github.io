@@ -23,3 +23,10 @@ collections:
         fields:
           - { label: "Title", name: "title", widget: "string" }
           - { label: "Body", name: "body", widget: "markdown" }
+
+
+backend:
+  name: github
+  repo: biginfra/biginfra.github.io
+  branch: main
+  client_id: Ov23likMP3o7CDbwgFv0
