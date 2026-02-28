@@ -55,6 +55,6 @@ Access restricted only for Students of IITM
 
 ## Contact
 
-**Mr. Yash Lohana** </br>
-Mobile: (+91) 8856947318</br>
+**Mr. Yash Lohana**<br/>
+Mobile: (+91) 8856947318<br/>
 Email: biginfra.in@gmail.com
