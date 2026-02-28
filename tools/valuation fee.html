@@ -1,1 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Valuation Fee Calculator</title>
+<link rel="stylesheet" href="style.css">
+<script src="script.js" defer></script>
+</head>
 
+<body>
+
+<header>
+<h1>Asset Valuation Fee Calculator</h1>
+<nav>
+<a href="index.html">Home</a>
+<a href="gps.html">GPS Tool</a>
+</nav>
+</header>
+
+<div class="container">
+
+<div class="card">
+<h2>Enter Asset Value</h2>
+
+<form id="valuationForm">
+<input type="number" id="assetValue" placeholder="Enter Property Value (₹)">
+<button type="submit">Calculate</button>
+</form>
+
+<div class="result">
+<p id="value"></p>
+<p id="rule"></p>
+<p id="applied"></p>
+<p id="discountV"></p>
+<p id="discountP"></p>
+</div>
+
+</div>
+
+<div class="card">
+<h3>Travel Charges Reference</h3>
+
+<table>
+<tr>
+<th>Vehicle</th>
+<th>Range</th>
+<th>Rate</th>
+</tr>
+<tr><td>Bike</td><td>20-50 km</td><td>₹3/km</td></tr>
+<tr><td>Car</td><td>10-60 km</td><td>₹8/km</td></tr>
+<tr><td>SUV</td><td>5-80 km</td><td>₹12/km</td></tr>
+</table>
+
+</div>
+
+</div>
+
+<footer>
+Professional Valuation Utility
+</footer>
+
+</body>
+</html>
