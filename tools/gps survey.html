@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>GPS Calculator</title>
+<link rel="stylesheet" href="style.css">
+<script src="script.js" defer></script>
+</head>
+
+<body>
+
+<header>
+<h1>GPS Distance, Angle & Area Calculator</h1>
+<nav>
+<a href="index.html">Home</a>
+<a href="valuation.html">Valuation Tool</a>
+</nav>
+</header>
+
+<div class="container">
+
+<div class="card">
+
+<h3>Enter Coordinates</h3>
+
+<input id="lat1" placeholder="Point 1 Latitude">
+<input id="lon1" placeholder="Point 1 Longitude">
+
+<input id="lat2" placeholder="Point 2 Latitude">
+<input id="lon2" placeholder="Point 2 Longitude">
+
+<input id="lat3" placeholder="Point 3 Latitude">
+<input id="lon3" placeholder="Point 3 Longitude">
+
+<button onclick="computeGPS()">Calculate</button>
+
+<div class="result">
+<p id="distance"></p>
+<p id="angle"></p>
+<p id="area"></p>
+<p id="north"></p>
+</div>
+
+</div>
+
+</div>
+
+<footer>
+© 2025 Mr. Yash Lohana
+</footer>
+
+</body>
+</html>
