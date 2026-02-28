@@ -31,6 +31,14 @@ collections:
           - {label: Title, name: title, widget: string}
           - {label: Body, name: body, widget: markdown}
 
+      - label: Tools
+        name: Tools
+        file: index.html
+        fields:
+          - {label: Title, name: title, widget: string}
+          - {label: Body, name: body, widget: markdown}
+
+
       - label: Payments
         name: payments
         file: payments.md
