@@ -31,9 +31,9 @@ collections:
           - {label: Title, name: title, widget: string}
           - {label: Body, name: body, widget: markdown}
 
-      - label: Contact
-        name: contact
-        file: contact.md
+      - label: Payments
+        name: payments
+        file: payments.md
         fields:
           - {label: Title, name: title, widget: string}
           - {label: Body, name: body, widget: markdown}
