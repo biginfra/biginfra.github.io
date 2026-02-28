@@ -8,8 +8,9 @@ In case, their exists an arrangement with the intended user where they shall han
 You can directly pay us by various options
 1. [Razorpay Payment Gateway](https://razorpay.me/@biginfra)
 2. [PayPal payment Gateway](https://paypal.me/biginfra)
-3. UPI at G-Pay Business VPA: ![8856947318-1@okbizaxis](images/https://drive.google.com/file/d/1lSmw0rthuvNn9nC1GZ126ycE712J59tM/view?usp=sharing)
-4. Bank Account Transfer:
+3. UPI at G-Pay Business VPA: ![8856947318-1@okbizaxis](images/BIG-PayBizQR.jpeg)
+
+5. Bank Account Transfer:
 -    Acccount Holder: Mr. Yash Kanhaiya Lohana
 -    Account No. 34001675346
 -    Bank: State Bank of India
