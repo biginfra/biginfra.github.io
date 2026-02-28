@@ -2,8 +2,7 @@ backend:
   name: github
   repo: biginfra/biginfra.github.io
   branch: main
-  base_url: https://decap-cms-oauth.netlify.app
-  
+
 media_folder: "assets/images"
 public_folder: "/assets/images"
 
@@ -12,30 +11,30 @@ collections:
     label: "Pages"
     files:
 
-      - file: "index.md"
-        label: "Home"
+      - label: "Home"
         name: "home"
+        file: "index.md"
         fields:
           - {label: Title, name: title, widget: string}
           - {label: Body, name: body, widget: markdown}
 
-      - file: "about.md"
-        label: "About"
+      - label: "About"
         name: "about"
+        file: "about.md"
         fields:
           - {label: Title, name: title, widget: string}
           - {label: Body, name: body, widget: markdown}
 
-      - file: "services.md"
-        label: "Services"
+      - label: "Services"
         name: "services"
+        file: "services.md"
         fields:
           - {label: Title, name: title, widget: string}
           - {label: Body, name: body, widget: markdown}
 
-      - file: "contact.md"
-        label: "Contact"
+      - label: "Contact"
         name: "contact"
+        file: "contact.md"
         fields:
           - {label: Title, name: title, widget: string}
           - {label: Body, name: body, widget: markdown}
