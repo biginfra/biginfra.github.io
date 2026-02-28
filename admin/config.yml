@@ -17,9 +17,9 @@ collections:
           - {label: Title, name: title, widget: string}
           - {label: Body, name: body, widget: markdown}
 
-      - label: About
-        name: about
-        file: about.md
+      - label: Declarations
+        name: declarations
+        file: declarations.md
         fields:
           - {label: Title, name: title, widget: string}
           - {label: Body, name: body, widget: markdown}
