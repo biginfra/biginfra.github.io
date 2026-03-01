@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPS Distance, Angle, and Area Calculator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e90ff 0%, #00bfff 50%, #00ced1 100%);
+            min-height: 100vh;
+            padding: 30px 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 40px;
+            border-radius: 16px;
+            background-color: white;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            color: #1e90ff;
+            font-size: 2.2em;
+            margin-bottom: 10px;
+            text-align: center;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .instructions {
+            margin-bottom: 30px;
+            padding: 20px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #f0f8ff 0%, #e0f6ff 100%);
+            border-left: 5px solid #1e90ff;
+        }
+
+        .instructions p {
+            margin-bottom: 12px;
+            color: #333;
+            font-size: 1em;
+        }
+
+        .instructions strong {
+            color: #1e90ff;
+            font-weight: 600;
+        }
+
+        .instructions ul {
+            margin-left: 20px;
+            color: #555;
+        }
+
+        .instructions li {
+            margin: 8px 0;
+            padding-left: 5px;
+        }
+
+        .input-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #1e90ff;
+            font-size: 0.95em;
+        }
+
+        input {
+            padding: 12px 14px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            background-color: #fafbfc;
+        }
+
+        input:focus {
+            outline: none;
+            border: 2px solid #1e90ff;
+            background-color: #f0f8ff;
+            box-shadow: 0 0 0 4px rgba(30, 144, 255, 0.1);
+        }
+
+        input::placeholder {
+            color: #999;
+        }
+
+        button {
+            width: 100%;
+            background: linear-gradient(135deg, #1e90ff 0%, #00bfff 100%);
+            color: white;
+            padding: 14px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+            box-shadow: 0 6px 20px rgba(30, 144, 255, 0.3);
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(30, 144, 255, 0.4);
+        }
+
+        button:active {
+            transform: translateY(0);
+            box-shadow: 0 4px 15px rgba(30, 144, 255, 0.3);
+        }
+
+        .results {
+            margin-top: 30px;
+            padding: 25px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #f0f8ff 0%, #e6f2ff 100%);
+            border-left: 5px solid #1e90ff;
+            min-height: 100px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .results p {
+            margin: 10px 0;
+            font-size: 1.05em;
+            color: #333;
+            font-weight: 500;
+            line-height: 1.8;
+        }
+
+        .results p:before {
+            content: "✓ ";
+            color: #00bfff;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        .results p:empty {
+            display: none;
+        }
+
+        .results p:empty:before {
+            content: "";
+            margin-right: 0;
+        }
+
+        .copyright {
+            margin-top: 30px;
+            font-size: 0.85em;
+            color: #888;
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .copyright p {
+            margin: 4px 0;
+        }
+
+        @media (max-width: 600px) {
+            .input-section {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+
+            .container {
+                padding: 25px;
+            }
+        }
+    </style>
+    <script>
+        function calculateDistance(lat1, lon1, lat2, lon2) {
+            const R = 6371000;
+            const dLat = (lat2 - lat1) * Math.PI / 180;
+            const dLon = (lon2 - lon1) * Math.PI / 180;
+            const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                      Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+                      Math.sin(dLon / 2) * Math.sin(dLon / 2);
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+            return R * c;
+        }
+
+        function calculateAngle(lat1, lon1, lat2, lon2, lat3, lon3) {
+            const toRadians = (deg) => deg * Math.PI / 180;
+
+            const x1 = Math.cos(toRadians(lat1)) * Math.cos(toRadians(lon1));
+            const y1 = Math.cos(toRadians(lat1)) * Math.sin(toRadians(lon1));
+            const z1 = Math.sin(toRadians(lat1));
+
+            const x2 = Math.cos(toRadians(lat2)) * Math.cos(toRadians(lon2));
+            const y2 = Math.cos(toRadians(lat2)) * Math.sin(toRadians(lon2));
+            const z2 = Math.sin(toRadians(lat2));
+
+            const x3 = Math.cos(toRadians(lat3)) * Math.cos(toRadians(lon3));
+            const y3 = Math.cos(toRadians(lat3)) * Math.sin(toRadians(lon3));
+            const z3 = Math.sin(toRadians(lat3));
+
+            const vector1 = [x2 - x1, y2 - y1, z2 - z1];
+            const vector2 = [x3 - x2, y3 - y2, z3 - z2];
+
+            const dotProduct = vector1[0] * vector2[0] + vector1[1] * vector2[1] + vector1[2] * vector2[2];
+            const magnitude1 = Math.sqrt(vector1[0] ** 2 + vector1[1] ** 2 + vector1[2] ** 2);
+            const magnitude2 = Math.sqrt(vector2[0] ** 2 + vector2[1] ** 2 + vector2[2] ** 2);
+
+            const angle = Math.acos(dotProduct / (magnitude1 * magnitude2));
+            return angle * 180 / Math.PI;
+        }
+
+        function calculateArea(lat1, lon1, lat2, lon2, lat3, lon3) {
+            const toRadians = (deg) => deg * Math.PI / 180;
+            const R = 6371000;
+
+            const a = calculateDistance(lat2, lon2, lat3, lon3) / R;
+            const b = calculateDistance(lat1, lon1, lat3, lon3) / R;
+            const c = calculateDistance(lat1, lon1, lat2, lon2) / R;
+
+            const s = (a + b + c) / 2;
+            const tanE = Math.sqrt(Math.tan(s / 2) * Math.tan((s - a) / 2) * Math.tan((s - b) / 2) * Math.tan((s - c) / 2));
+            const E = 4 * Math.atan(tanE);
+
+            return (E * R * R);
+        }
+
+        function calculateNorthAngle(lat1, lon1, lat2, lon2) {
+            const toRadians = (deg) => deg * Math.PI / 180;
+            const toDegrees = (rad) => rad * 180 / Math.PI;
+
+            const dLon = toRadians(lon2 - lon1);
+            const lat1Rad = toRadians(lat1);
+            const lat2Rad = toRadians(lat2);
+
+            const y = Math.sin(dLon) * Math.cos(lat2Rad);
+            const x = Math.cos(lat1Rad) * Math.sin(lat2Rad) -
+                      Math.sin(lat1Rad) * Math.cos(lat2Rad) * Math.cos(dLon);
+
+            const angle = Math.atan2(y, x);
+            return (toDegrees(angle) + 360) % 360; // Normalize to 0-360 degrees
+        }
+
+        function computeResults() {
+            const lat1 = parseFloat(document.getElementById("lat1").value);
+            const lon1 = parseFloat(document.getElementById("lon1").value);
+            const lat2 = parseFloat(document.getElementById("lat2").value);
+            const lon2 = parseFloat(document.getElementById("lon2").value);
+            const lat3 = parseFloat(document.getElementById("lat3").value);
+            const lon3 = parseFloat(document.getElementById("lon3").value);
+
+            const distance = calculateDistance(lat1, lon1, lat2, lon2);
+            const angle = calculateAngle(lat1, lon1, lat2, lon2, lat3, lon3);
+            const area = calculateArea(lat1, lon1, lat2, lon2, lat3, lon3);
+            const northAngle = calculateNorthAngle(lat1, lon1, lat2, lon2);
+
+            document.getElementById("distanceResult").innerText = `Distance: ${distance.toFixed(2)} m`;
+            document.getElementById("angleResult").innerText = `Angle: ${angle.toFixed(2)}°`;
+            document.getElementById("areaResult").innerText = `Area: ${area.toFixed(2)} m²`;
+            document.getElementById("northAngleResult").innerText = `Bearing: ${northAngle.toFixed(2)}°`;
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>GPS Distance, Angle, and Area Calculator</h1>
+        <div class="instructions">
+            <p><strong>Instructions</strong></p>
+            <p>Enter the latitude and longitude of three points on Earth. The calculator will compute:</p>
+            <ul>
+                <li>The distance between the first two points (in meters)</li>
+                <li>The angle formed by the three points (in degrees)</li>
+                <li>The area of the triangle formed by the three points (in square meters)</li>
+                <li>The angle between the first two points and North (in degrees)</li>
+            </ul>
+        </div>
+
+        <div class="input-section">
+            <div class="input-group">
+                <label for="lat1">Point 1 Latitude</label>
+                <input type="number" id="lat1" step="any" placeholder="e.g., 37.7749">
+            </div>
+            <div class="input-group">
+                <label for="lon1">Point 1 Longitude</label>
+                <input type="number" id="lon1" step="any" placeholder="e.g., -122.4194">
+            </div>
+            <div class="input-group">
+                <label for="lat2">Point 2 Latitude</label>
+                <input type="number" id="lat2" step="any" placeholder="e.g., 34.0522">
+            </div>
+            <div class="input-group">
+                <label for="lon2">Point 2 Longitude</label>
+                <input type="number" id="lon2" step="any" placeholder="e.g., -118.2437">
+            </div>
+            <div class="input-group">
+                <label for="lat3">Point 3 Latitude</label>
+                <input type="number" id="lat3" step="any" placeholder="e.g., 36.7783">
+            </div>
+            <div class="input-group">
+                <label for="lon3">Point 3 Longitude</label>
+                <input type="number" id="lon3" step="any" placeholder="e.g., -119.4179">
+            </div>
+        </div>
+
+        <button onclick="computeResults()">Calculate Results</button>
+
+        <div class="results">
+            <p id="distanceResult"></p>
+            <p id="angleResult"></p>
+            <p id="areaResult"></p>
+            <p id="northAngleResult"></p>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 Mr. Yash Lohana. All rights reserved.</p>
+            <p>This code is licensed for use with proper acknowledgment of ownership.</p>
+        </div>
+    </div>
+</body>
+</html>
